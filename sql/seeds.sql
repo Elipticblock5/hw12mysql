@@ -13,16 +13,16 @@ VALUES (4, "Rich Person");
 
 --roles--
 
-INSERT INTO roles (title, salary,)
-VALUES (1, "Actor Lead", 127000, );
-INSERT INTO roles (title, salary,)
-VALUES (2, "Rich Person", 1143000,);
-INSERT INTO roles (title, salary,)
-VALUES (3, "Software Engineer", 177000,);
-INSERT INTO roles (title, salary,)
-VALUES (4, "Baseball Player", 178000,);
-INSERT INTO roles (title, salary,)
-VALUES (5, "Baseball Lead", 259000,);
+INSERT INTO roles (title, salary, dept_id)
+VALUES ("Actor Lead", 127000, 1);
+INSERT INTO roles (title, salary, dept_id)
+VALUES ("Rich Person", 1143000, 4);
+INSERT INTO roles (title, salary, dept_id)
+VALUES ("Software Engineer", 177000, 2);
+INSERT INTO roles (title, salary, dept_id)
+VALUES ("Baseball Player", 178000, 3);
+INSERT INTO roles (title, salary, dept_id)
+VALUES ("Baseball Lead", 259000, 3);
 
 --employes
 

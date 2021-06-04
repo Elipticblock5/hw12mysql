@@ -26,8 +26,8 @@ CREATE TABLE employee (
   emp_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(45) NOT NULL,
   last_name VARCHAR(45) NOT NULL,
-  role_id INT NOT NULL REFERENCES role(role_id),
+  role_id INT NOT NULL REFERENCES roles(role_id),
   manager_id INT REFERENCES employee(emp_id),
-  FOREIGN KEY(role_id) REFERENCES role(role_id) ON DELETE CASCADE,
+  FOREIGN KEY(role_id) REFERENCES roles(role_id) ON DELETE CASCADE,
   FOREIGN KEY(manager_id) REFERENCES employee(emp_id) ON DELETE CASCADE
 );
