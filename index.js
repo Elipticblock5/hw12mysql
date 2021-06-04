@@ -22,6 +22,7 @@ const connection = mysql.createConnection({
 // connection to servers
 connection.connect(function (err) {
   if (err) throw err;
+  console.log("\n Welcome to the Database \n");
   // starts questions if connection
   initialPrompt();
 });
@@ -32,50 +33,53 @@ function initialPrompt() {
 
   // inquirer questions 
 
-  inquirer
-    .prompt({
-      type: "list",
-      name: "task",
-      message: "What funciton would you like to do today?",
-      choices: [
-        "View the Employees",
-        "View the Employees by their Department",
-        "Add a New Employee",
-        "Remove an Existing Employee",
-        "Update the Employee Role",
-        "Add a new Employee Role",
-        "End"]
-    })
-
-    //List of funcitons for assigment add/remove/udpate
-
-    .then(function ({ task }) {
-      switch (task) {
-        case "View Employees":
-          showEmployee();
-          break;
-        case "View Employees by Department":
-          viewByDepartment();
-          break;
-        case "Add Employee":
+  function init() {
+    inquirer.prompt(startMenu).then((response) => {
+      switch (response.firstOption) {
+        case "add an employee":
           addEmployee();
           break;
-        case "Remove Employees":
-          removeEmployees();
-          break;
-        case "Update Employee Role":
-          employeeRoleUpdate();
-          break;
-        case "Add Role":
+        case "add a roll":
           addRole();
           break;
-        case "End":
+        case "add a department":
+          addDepartment();
+          break;
+        case "view all of the employees":
+          viewEmp();
+          break;
+        case "view the employees by their role":
+          viewByRole();
+          break;
+        case "view all employees by department":
+          viewByDept();
+          break;
+        case "view all roles":
+          viewRoles();
+          break;
+        case "view all depts":
+          viewDept();
+          break;
+        case "update an employee role":
+          updateEmpRole();
+          break;
+        case "Exit":
           connection.end();
           break;
+        default:
+          connection.end();
       }
     });
-}
 
+
+    
+
+    // fill arrays with data
+
+    getEmpDept();
+    getEmpRoles();
+    getManagers();
+    
 
 
 
