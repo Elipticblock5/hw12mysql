@@ -4,9 +4,14 @@ const mysql = require("mysql");
 const inquirer = require("inquirer");
 require("console.table");
 
+let manArray = [];
+let departmentArray = [];
+let employeeArray = [];
+let roleArray = [];
+
 
 //connection information
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
   host: "localhost",
   port: 3001,
   user: "root",
