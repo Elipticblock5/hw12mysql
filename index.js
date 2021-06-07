@@ -1,8 +1,15 @@
 // packages needed
 
-const mysql = require("mysql");
+const mysql = require("mysql2");
+const express = require("express");
 const inquirer = require("inquirer");
-require("console.table");
+const cTable = require('console.table');
+
+const app = express();
+
+//express middleware
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 let manArray = [];
 let departmentArray = [];
@@ -23,10 +30,12 @@ mySqlConnection.connect(function(err) {
     return console.error('error: ' + err.message);
   }
 
-  console.log('Nate you are Connected to the MySQL server.');
+  console.log('Nate you are Connected to the MySQL server employees_db.');
   initialPrompt();
 });
 
+
+//askBCS ticket assistance
 const menuChoices = [
   {
     type: "list",
@@ -52,6 +61,7 @@ const menuChoices = [
 
 
 // connection to servers
+//created earlier, help with askBCS ticket
 
 /* mySqlConnection.connect(function (err) {
     if (err) throw err;
@@ -136,7 +146,7 @@ function initialPrompt() {
           for (i = 0; i < roles.length; i++) {
             roleArray.push(roles[i].title);
           }
-          // console.log(roleArray);
+           console.log(roleArray);
         });
       }
 
@@ -152,7 +162,7 @@ function initialPrompt() {
           for (i = 0; i < managers.length; i++) {
             manArray.push(managers[i].last_name);
           }
-          // console.log(manArray);
+           console.log(manArray);
         });
       }
 
