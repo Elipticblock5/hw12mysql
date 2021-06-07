@@ -2,7 +2,7 @@
 
 const mysql = require("mysql");
 const inquirer = require("inquirer");
-require("console.table");
+const consoleTable = require("console.table");
 
 let manArray = [];
 let departmentArray = [];
@@ -11,7 +11,7 @@ let roleArray = [];
 
 
 //connection information
-const connection = mysql.createConnection({
+const mySqlConnection = mysql.createConnection({
   host: "localhost",
   port: 3001,
   user: "root",
@@ -44,20 +44,18 @@ const menuChoices = [
 
 
 // connection to servers
-  connection.connect(function (err) {
+
+mySqlConnection.connect(function (err) {
     if (err) throw err;
     console.log("\n Welcome to the Database \n");
-    // starts questions if connection
+    
     initialPrompt();
   });
 
+
+
 // user propmts for questions. 
 function initialPrompt() {
-
-
-  // inquirer questions 
-
-
     inquirer.prompt(menuChoices).then((response) => {
       switch (response.firstChoice) {
         case "add an employee":
@@ -88,10 +86,10 @@ function initialPrompt() {
           updateEmpRole();
           break;
         case "Exit":
-          connection.end();
+          mySqlConnection.end();
           break;
         default:
-          connection.end();
+          mySqlConnection.end();
       }
     
     });
@@ -109,7 +107,7 @@ function initialPrompt() {
     //employee dept function
 
     function getEmpDept() {
-      connection.query(`SELECT dept_name FROM drepartment`, function (
+      mySqlConnection.query(`SELECT dept_name FROM drepartment`, function (
         err,
         departments
         ){
@@ -124,7 +122,7 @@ function initialPrompt() {
       //get roles function
 
       function getEmpRoles() {
-        connection.query(`SELECT title FROM roles`, function (err, roles) {
+        mySqlConnection.query(`SELECT title FROM roles`, function (err, roles) {
           if (err) throw err;
           roleArray = [];
           for (i = 0; i < roles.length; i++) {
@@ -137,7 +135,7 @@ function initialPrompt() {
       //managers function
 
       function getManagers() {
-        connection.query(`SELECT employee.last_name FROM employee`, function (
+        mySqlConnection.query(`SELECT employee.last_name FROM employee`, function (
           err,
           managers
         ) {
@@ -152,9 +150,9 @@ function initialPrompt() {
 
 // adding employee function
       function addEmployee() {
-        connection.query("SELECT * FROM roles", function (err, res) {
+        mySqlConnection.query("SELECT * FROM roles", function (err, res) {
           if (err) throw err;
-          connection.query("SELECT * FROM employee", function (err, res2) {
+          mySqlConnection.query("SELECT * FROM employee", function (err, res2) {
             if (err) throw err;
 
             //prompts for data input
@@ -204,7 +202,7 @@ function initialPrompt() {
 
                 // after prompts, insert a new item into employee_db from inputs
 
-                connection.query(
+                mySqlConnection.query(
                   "INSERT INTO employee SET ?",
                   {
                     first_name: answer.first_name,
@@ -225,7 +223,7 @@ function initialPrompt() {
       //adding role logic filling new role with data
 
       function addRole() {
-        connection.query("SELECT * FROM department", function (err, res) {
+        mySqlConnection.query("SELECT * FROM department", function (err, res) {
           if (err) throw err;
           inquirer
             .prompt([
@@ -256,7 +254,7 @@ function initialPrompt() {
                 }
               }
              
-              connection.query(
+              mySqlConnection.query(
                 "INSERT INTO roles SET ?",
                 {
                   title: answer.title,
@@ -287,7 +285,7 @@ function initialPrompt() {
           ])
           .then(function (answer) {
             
-            connection.query(
+            mySqlConnection.query(
               "INSERT INTO department SET ?",
               {
                 dept_name: answer.department,
@@ -305,7 +303,7 @@ function initialPrompt() {
 
       
 function viewByDept() {
-  connection.query(
+  mySqlConnection.query(
     `SELECT employee.emp_id, employee.first_name, employee.last_name, department.dept_name FROM employee 
   LEFT JOIN roles ON employee.role_id = roles.role_id
   LEFT JOIN department ON roles.dept_id = department.dept_id 
@@ -321,7 +319,7 @@ function viewByDept() {
  //function to view by employee role
 
  function viewByRole() {
-  connection.query(
+  mySqlConnection.query(
     `SELECT employee.emp_id, employee.first_name, employee.last_name, roles.title, roles.salary, department.dept_name FROM employee 
     LEFT JOIN roles ON employee.role_id = roles.role_id
     LEFT JOIN department ON roles.dept_id = department.dept_id 
@@ -337,7 +335,7 @@ function viewByDept() {
 //view roles of all kinds
 
 function viewRoles() {
-  connection.query(`SELECT * FROM roles`, function (err, data) {
+  mySqlConnection.query(`SELECT * FROM roles`, function (err, data) {
     if (err) throw err;
     console.table(data);
     initialPrompt();
@@ -347,7 +345,7 @@ function viewRoles() {
 //view all Depts.
 
 function viewDept() {
-  connection.query(`SELECT * FROM department`, function (err, data) {
+  mySqlConnection.query(`SELECT * FROM department`, function (err, data) {
     if (err) throw err;
     console.table(data);
     initialPrompt();
@@ -358,7 +356,7 @@ function viewDept() {
 
 
 function viewEmp() {
-  connection.query(
+  mySqlConnection.query(
     `SELECT employee.emp_id, employee.first_name, employee.last_name, roles.title,
   department.dept_name AS department,roles.salary,CONCAT(a.first_name, " ", a.last_name) AS manager
   FROM employee
@@ -375,7 +373,7 @@ function viewEmp() {
 
 //employee update
 function updateEmpRole() {
-  connection.query(
+  mySqlConnection.query(
     `SELECT concat(employee.first_name, ' ' ,  employee.last_name) AS Name FROM employee`,
     function (err, employees) {
       if (err) throw err;
@@ -383,7 +381,7 @@ function updateEmpRole() {
       for (i = 0; i < employees.length; i++) {
         emplArr.push(employees[i].Name);
       }
-      connection.query("SELECT * FROM roles", function (err, res2) {
+      mySqlConnection.query("SELECT * FROM roles", function (err, res2) {
         if (err) throw err;
         inquirer
           .prompt([
@@ -409,7 +407,7 @@ function updateEmpRole() {
             }
       // takes data from above propmts and fills db
 
-            connection.query(
+            mySqlConnection.query(
               `UPDATE employee SET role_id = ? WHERE emp_id = (SELECT emp_id FROM(SELECT emp_id FROM employee WHERE CONCAT(first_name," ",last_name) = ?)AS NAME)`,
               [roleID, answer.empPick],
               function (err) {

@@ -1,7 +1,6 @@
 {
   "name": "hw12mysql",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
     "console.table": "^0.10.0",
@@ -23,5 +22,6 @@
   "bugs": {
     "url": "https://github.com/Elipticblock5/hw12MySQL/issues"
   },
-  "homepage": "https://github.com/Elipticblock5/hw12MySQL#readme"
+  "homepage": "https://github.com/Elipticblock5/hw12MySQL#readme",
+  "description": ""
 }
