@@ -33,15 +33,15 @@ const menuChoices = [
     name: "firstChoice",
     message: "Please choose from the following.",
     choices: [
-      "Add an Employee to your Organization",
-      "Add a Role to the Database",
-      "Add a Department to the Database",
-      "View all of your great employees",
-      "Find an employee by their role",
-      "Find an employee by tehir department",
-      "See all the roles fulfilled",
-      "see all the departments",
-      "Change an employees role?",
+      "add an employee",
+      "add a role",
+      "add a department",
+      "view all of the employees",
+      "view the employees by their role",
+      "view all employees by department",
+      "view all roles",
+      "view all depts",
+      "update an employee role",
       "Exit",
     ],
   },
@@ -69,7 +69,7 @@ function initialPrompt() {
         case "add an employee":
           addEmployee();
           break;
-        case "add a roll":
+        case "add a role":
           addRole();
           break;
         case "add a department":
