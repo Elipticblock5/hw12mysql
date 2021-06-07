@@ -189,13 +189,25 @@ function initialPrompt() {
                   name: "roleEmployee",
                   type: "list",
                   message: "What is the employee role?",
-                  choices: roleArray,
+                  choices: [
+                    "Software Engineer",
+                    "Actor Lead",
+                    "Baseball Player",
+                    "Rich Person",
+                    "Baseball Lead"
+
+                  ]
                 },
                 {
                   name: "managerEmp",
                   type: "list",
                   message: "Who is the employees Manager?",
-                  choices: manArray,
+                  choices: [
+                    "Robert Redford",
+                    "Nolan Ryan",
+                    "Derek Jeter",
+                    "Brad Pitt"
+                  ]
                 },
               ])
 
