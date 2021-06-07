@@ -10,13 +10,20 @@ let employeeArray = [];
 let roleArray = [];
 
 
-//connection information
-const mySqlConnection = mysql.createConnection({
+//connection information, not workign, am working with askBCS to assist
+let mySqlConnection = mysql.createConnection({
   host: "localhost",
-  port: 3001,
   user: "root",
   password: "lassyfenn",
   database: "employees_db"
+});
+
+mySqlConnection.connect(function(err) {
+  if (err) {
+    return console.error('error: ' + err.message);
+  }
+
+  console.log('Connected to the MySQL server.');
 });
 
 const menuChoices = [
@@ -45,13 +52,13 @@ const menuChoices = [
 
 // connection to servers
 
-mySqlConnection.connect(function (err) {
+/* mySqlConnection.connect(function (err) {
     if (err) throw err;
     console.log("\n Welcome to the Database \n");
     
     initialPrompt();
   });
-
+   */
 
 
 // user propmts for questions. 
@@ -107,7 +114,7 @@ function initialPrompt() {
     //employee dept function
 
     function getEmpDept() {
-      mySqlConnection.query(`SELECT dept_name FROM drepartment`, function (
+      mySqlConnection.query(`SELECT dept_name FROM department`, function (
         err,
         departments
         ){
