@@ -2,7 +2,7 @@
 
 const mysql = require("mysql");
 const inquirer = require("inquirer");
-const consoleTable = require("console.table");
+require("console.table");
 
 let manArray = [];
 let departmentArray = [];
@@ -23,7 +23,8 @@ mySqlConnection.connect(function(err) {
     return console.error('error: ' + err.message);
   }
 
-  console.log('Connected to the MySQL server.');
+  console.log('Nate you are Connected to the MySQL server.');
+  initialPrompt();
 });
 
 const menuChoices = [
@@ -163,8 +164,7 @@ function initialPrompt() {
             if (err) throw err;
 
             //prompts for data input
-            inquirer
-              .prompt([
+            inquirer.prompt([
                 {
                   name: "first_name",
                   type: "input",
