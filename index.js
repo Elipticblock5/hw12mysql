@@ -20,6 +20,7 @@ let roleArray = [];
 //connection information, not workign, am working with askBCS to assist
 let mySqlConnection = mysql.createConnection({
   host: "localhost",
+  port: 3301,
   user: "root",
   password: "lassyfenn",
   database: "employees_db"
