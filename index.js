@@ -26,16 +26,6 @@ let mySqlConnection = mysql.createConnection({
   database: "employees_db"
 });
 
-mySqlConnection.connect(function(err) {
-  if (err) {
-    return console.error('error: ' + err.message);
-  }
-
-  console.log('Nate you are Connected to the MySQL server employees_db.');
-  initialPrompt();
-});
-
-
 //askBCS ticket assistance
 const menuChoices = [
   {
@@ -56,6 +46,20 @@ const menuChoices = [
     ],
   },
 ];
+
+
+mySqlConnection.connect(function(err) {
+  if (err) {
+    return console.error('error: ' + err.message);
+  }
+
+  console.log('Nate you are Connected to the MySQL server employees_db.');
+  
+});
+//askBCS ticket 70351
+initialPrompt();
+
+
 
 
 
