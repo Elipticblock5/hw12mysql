@@ -1,17 +1,16 @@
 USE employees_db;
 
 
--- Department Values--
-INSERT INTO department (dept_Id , dept_name)
+
+INSERT INTO department (dept_id , dept_name)
 VALUES (1, "Actor");
-INSERT INTO department (dept_Id , dept_name)
+INSERT INTO department (dept_id , dept_name)
 VALUES (2, "Engineering");
-INSERT INTO department (dept_Id , dept_name)
+INSERT INTO department (dept_id , dept_name)
 VALUES (3, "Baseball");
-INSERT INTO department (dept_Id , dept_name)
+INSERT INTO department (dept_id , dept_name)
 VALUES (4, "Rich Person");
 
---roles--
 
 INSERT INTO roles (title, salary, dept_id)
 VALUES ("Actor Lead", 127000, 1);
@@ -24,12 +23,12 @@ VALUES ("Baseball Player", 178000, 3);
 INSERT INTO roles (title, salary, dept_id)
 VALUES ("Baseball Lead", 259000, 3);
 
---employes
+
 
 INSERT INTO employee (emp_id, first_name, last_name, role_id, manager_id)
 VALUES (1, "Nate", "Johnson", 3, null);
 INSERT INTO employee (emp_id, first_name, last_name, role_id, manager_id)
-VALUES (2, "Brad", "Pitt", 1, 1, null;
+VALUES (2, "Brad", "Pitt", 1, null);
 INSERT INTO employee (emp_id, first_name, last_name, role_id, manager_id)
 VALUES (3, "Harrison", "Ford", 3, null);
 INSERT INTO employee (emp_id, first_name, last_name, role_id, manager_id)
