@@ -27,7 +27,7 @@ ISC
 ### Technology
 
 - JavaScript
-- JQuery
+- Express.js
 - Node.js
 - MySQL
 - GitHub
