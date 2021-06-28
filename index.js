@@ -413,6 +413,16 @@ function viewEmp() {
     }
   );
 }
+function allRoles(){
+  mySqlConnection.query(
+  `SELECT concat(roles.title, ' ' ,  roles.title) AS Title FROM roles`,
+  function (err, roles) {
+    if (err) throw err;
+    rolesArray = [];
+
+  })
+}
+
 
 //employee update
 function updateEmpRole() {
@@ -421,20 +431,29 @@ function updateEmpRole() {
     function (err, employees) {
       if (err) throw err;
       employeeArray = [];
+
+    
      
       for (i = 0; i < employees.length; i++) {
         employeeArray.push(employees[i].Name);
         //console.log(response)
         console.log(roleArray)
       }
-      if (err) throw err;
-      roleArray = [];
+    
+      
+      let roles = allRoles
      
-     // for (i = 0; i < roles.length; i++) {
-       // roleArray.push(roles[i].title);
+     for (i = 0; i < roles.length; i++) {
+        roleArray.push(roles[i].title);
+        if (err) throw err;
+      roleArray = [];
+        
+        
+
+
         //console.log(response)
-        //console.log(roleArray)
-     // }
+        console.log(roleArray)
+     }
 
 
       mySqlConnection.query("SELECT * FROM roles", function (err, res2) {
