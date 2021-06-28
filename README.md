@@ -10,7 +10,7 @@ Command-line application in MySQL to manage and employee database. Requires MySQ
 
 ## Video Link
 
-[Video Walkthrough Youtube](https://www.youtube.com/watch?v=8q7-tjoc31Q)
+[Video Walkthrough Youtube](https://www.youtube.com/watch?v=FOM3nNjof6U)
 
 ## Table of Contents
 
