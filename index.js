@@ -421,11 +421,22 @@ function updateEmpRole() {
     function (err, employees) {
       if (err) throw err;
       employeeArray = [];
+     
       for (i = 0; i < employees.length; i++) {
         employeeArray.push(employees[i].Name);
         //console.log(response)
-        //console.log(emplArr)
+        console.log(roleArray)
       }
+      if (err) throw err;
+      roleArray = [];
+     
+     // for (i = 0; i < roles.length; i++) {
+       // roleArray.push(roles[i].title);
+        //console.log(response)
+        //console.log(roleArray)
+     // }
+
+
       mySqlConnection.query("SELECT * FROM roles", function (err, res2) {
         if (err) throw err;
         inquirer
@@ -439,7 +450,7 @@ function updateEmpRole() {
             {
               name: "rolePick",
               type: "list",
-              message: "State the rold of the new employee?",
+              message: "State the role of the new employee?",
               choices: roleArray,
             },
           ])
