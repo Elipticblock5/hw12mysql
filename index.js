@@ -448,14 +448,14 @@ function updateEmpRole() {
         console.log(roleArray)
       }
     
-      
+  }
       
       
         
 
 
         
-     }
+     
 
 
       mySqlConnection.query("SELECT * FROM roles", function (err, res2) {
