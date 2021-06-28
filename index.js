@@ -419,8 +419,16 @@ function allRoles(){
   function (err, roles) {
     if (err) throw err;
     rolesArray = [];
+    let roles = allRoles
+     
+     for (i = 0; i < roles.length; i++) {
+        roleArray.push(roles[i].title);
+        if (err) throw err;
+      roleArray = [];
+      //console.log(response)
+      console.log(roleArray)
 
-  })
+  }
 }
 
 
@@ -441,18 +449,12 @@ function updateEmpRole() {
       }
     
       
-      let roles = allRoles
-     
-     for (i = 0; i < roles.length; i++) {
-        roleArray.push(roles[i].title);
-        if (err) throw err;
-      roleArray = [];
+      
         
         
 
 
-        //console.log(response)
-        console.log(roleArray)
+        
      }
 
 
