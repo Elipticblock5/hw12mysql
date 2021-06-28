@@ -420,9 +420,11 @@ function updateEmpRole() {
     `SELECT concat(employee.first_name, ' ' ,  employee.last_name) AS Name FROM employee`,
     function (err, employees) {
       if (err) throw err;
-      emplArr = [];
+      employeeArray = [];
       for (i = 0; i < employees.length; i++) {
-        emplArr.push(employees[i].Name);
+        employeeArray.push(employees[i].Name);
+        //console.log(response)
+        //console.log(emplArr)
       }
       mySqlConnection.query("SELECT * FROM roles", function (err, res2) {
         if (err) throw err;
