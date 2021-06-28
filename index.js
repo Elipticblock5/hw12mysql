@@ -7,7 +7,7 @@ const cTable = require('console.table');
 
 
 
-
+//arrays to fill
 let manArray = [];
 let departmentArray = [];
 let employeeArray = [];
@@ -259,7 +259,7 @@ function addRole() {
         //sets iD for future us
         let deptID;
         for (let d = 0; d < res.length; d++) {
-          if (res[d].department_name == answer.deptName) {
+          if (res[d].dept_name == answer.deptName) {
             deptID = res[d].dept_id;
           }
         }
