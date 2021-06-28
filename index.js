@@ -1,20 +1,21 @@
 // packages needed
 
 const mysql = require("mysql2");
-const express = require("express");
+//const express = require("express");
 const inquirer = require("inquirer");
 const cTable = require('console.table');
 
-const app = express();
+//const app = express();
 
-//express middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 
 let manArray = [];
 let departmentArray = [];
 let employeeArray = [];
 let roleArray = [];
+
+//express middleware
+//app.use(express.urlencoded({ extended: false }));
+//app.use(express.json());
 
 
 //connection information, not workign, am working with askBCS to assist
@@ -403,9 +404,9 @@ function viewEmp() {
   LEFT JOIN department ON roles.dept_id = department.dept_id
   LEFT JOIN employee a ON a.emp_id = employee.manager_id`,
     function (err, data) {
-      console.log({
-        err, data
-      })
+      //console.log({
+        //err, data
+     // })
       if (err) throw err;
       console.table(data);
       initialPrompt();
